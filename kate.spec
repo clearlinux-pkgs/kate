@@ -5,47 +5,26 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 18.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/18.08.0/src/kate-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/kate-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/kate-18.08.0.tar.xz.sig
+Version  : 18.12.1
+Release  : 2
+URL      : https://download.kde.org/stable/applications/18.12.1/src/kate-18.12.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.1/src/kate-18.12.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.1/src/kate-18.12.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-3.0 LGPL-2.1 LGPL-3.0
-Requires: kate-bin
-Requires: kate-lib
-Requires: kate-data
-Requires: kate-license
-Requires: kate-locales
-Requires: kate-man
-BuildRequires : attica-dev
+License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
+Requires: kate-bin = %{version}-%{release}
+Requires: kate-data = %{version}-%{release}
+Requires: kate-lib = %{version}-%{release}
+Requires: kate-license = %{version}-%{release}
+Requires: kate-locales = %{version}-%{release}
+Requires: kate-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kguiaddons-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kio-dev
-BuildRequires : kitemmodels-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
-BuildRequires : knewstuff-dev
-BuildRequires : kpackage-dev
-BuildRequires : kparts-dev
 BuildRequires : ktexteditor-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwallet-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : plasma-framework-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
+BuildRequires : qtbase-dev mesa-dev
 BuildRequires : threadweaver-dev
 
 %description
@@ -60,9 +39,9 @@ hundred characters).
 %package bin
 Summary: bin components for the kate package.
 Group: Binaries
-Requires: kate-data
-Requires: kate-license
-Requires: kate-man
+Requires: kate-data = %{version}-%{release}
+Requires: kate-license = %{version}-%{release}
+Requires: kate-man = %{version}-%{release}
 
 %description bin
 bin components for the kate package.
@@ -79,7 +58,7 @@ data components for the kate package.
 %package doc
 Summary: doc components for the kate package.
 Group: Documentation
-Requires: kate-man
+Requires: kate-man = %{version}-%{release}
 
 %description doc
 doc components for the kate package.
@@ -88,8 +67,8 @@ doc components for the kate package.
 %package lib
 Summary: lib components for the kate package.
 Group: Libraries
-Requires: kate-data
-Requires: kate-license
+Requires: kate-data = %{version}-%{release}
+Requires: kate-license = %{version}-%{release}
 
 %description lib
 lib components for the kate package.
@@ -120,27 +99,28 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-18.08.0
+%setup -q -n kate-18.12.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534714808
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549315123
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1534714808
+export SOURCE_DATE_EPOCH=1549315123
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kate
-cp COPYING-GPL3 %{buildroot}/usr/share/doc/kate/COPYING-GPL3
-cp COPYING-LGPL3 %{buildroot}/usr/share/doc/kate/COPYING-LGPL3
-cp kate/COPYING.LIB %{buildroot}/usr/share/doc/kate/kate_COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kate
+cp COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-GPL3
+cp COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-LGPL3
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/COPYING.LIB
+cp kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/kate_COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -296,7 +276,6 @@ popd
 /usr/share/doc/HTML/ca/katepart/edit-select-all-22.png
 /usr/share/doc/HTML/ca/katepart/format-text-superscript-22.png
 /usr/share/doc/HTML/ca/katepart/fundamentals.docbook
-/usr/share/doc/HTML/ca/katepart/highlighted.png
 /usr/share/doc/HTML/ca/katepart/index.cache.bz2
 /usr/share/doc/HTML/ca/katepart/index.docbook
 /usr/share/doc/HTML/ca/katepart/line-modification-system.png
@@ -304,7 +283,6 @@ popd
 /usr/share/doc/HTML/ca/katepart/minimap.png
 /usr/share/doc/HTML/ca/katepart/part.docbook
 /usr/share/doc/HTML/ca/katepart/regular-expressions.docbook
-/usr/share/doc/HTML/ca/katepart/unhighlighted.png
 /usr/share/doc/HTML/ca/katepart/vi.docbook
 /usr/share/doc/HTML/ca/kwrite/index.cache.bz2
 /usr/share/doc/HTML/ca/kwrite/index.docbook
@@ -564,13 +542,14 @@ popd
 /usr/lib64/qt5/plugins/plasma/dataengine/plasma_engine_katesessions.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kate/COPYING-GPL3
-/usr/share/doc/kate/COPYING-LGPL3
-/usr/share/doc/kate/kate_COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kate/COPYING-GPL3
+/usr/share/package-licenses/kate/COPYING-LGPL3
+/usr/share/package-licenses/kate/COPYING.LIB
+/usr/share/package-licenses/kate/kate_COPYING.LIB
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/ca/man1/kate.1
 /usr/share/man/de/man1/kate.1
 /usr/share/man/es/man1/kate.1
