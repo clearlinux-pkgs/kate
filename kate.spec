@@ -6,7 +6,7 @@
 #
 Name     : kate
 Version  : 18.12.2
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/applications/18.12.2/src/kate-18.12.2.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.2/src/kate-18.12.2.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.2/src/kate-18.12.2.tar.xz.sig
@@ -19,12 +19,33 @@ Requires: kate-lib = %{version}-%{release}
 Requires: kate-license = %{version}-%{release}
 Requires: kate-locales = %{version}-%{release}
 Requires: kate-man = %{version}-%{release}
+BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdbusaddons-dev
+BuildRequires : kguiaddons-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
+BuildRequires : kitemmodels-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
+BuildRequires : knewstuff-dev
+BuildRequires : kpackage-dev
+BuildRequires : kparts-dev
 BuildRequires : ktexteditor-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kwallet-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : plasma-framework-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : solid-dev
+BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 
 %description
@@ -106,15 +127,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549672534
+export SOURCE_DATE_EPOCH=1549862231
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549672534
+export SOURCE_DATE_EPOCH=1549862231
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-GPL3
