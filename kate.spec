@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 18.12.3
-Release  : 7
-URL      : https://download.kde.org/stable/applications/18.12.3/src/kate-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/kate-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/kate-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 8
+URL      : https://download.kde.org/stable/applications/19.04.0/src/kate-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/kate-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/kate-19.04.0.tar.xz.sig
 Summary  : Advanced Text Editor
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -19,33 +19,12 @@ Requires: kate-lib = %{version}-%{release}
 Requires: kate-license = %{version}-%{release}
 Requires: kate-locales = %{version}-%{release}
 Requires: kate-man = %{version}-%{release}
-BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kguiaddons-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kio-dev
-BuildRequires : kitemmodels-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
-BuildRequires : knewstuff-dev
-BuildRequires : kpackage-dev
-BuildRequires : kparts-dev
 BuildRequires : ktexteditor-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwallet-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : plasma-framework-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 
 %description
@@ -119,14 +98,14 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-18.12.3
+%setup -q -n kate-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555322507
+export SOURCE_DATE_EPOCH=1555602444
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -134,7 +113,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555322507
+export SOURCE_DATE_EPOCH=1555602444
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-GPL3
