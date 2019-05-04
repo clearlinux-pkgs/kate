@@ -6,7 +6,7 @@
 #
 Name     : kate
 Version  : 19.04.0
-Release  : 8
+Release  : 9
 URL      : https://download.kde.org/stable/applications/19.04.0/src/kate-19.04.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.04.0/src/kate-19.04.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/19.04.0/src/kate-19.04.0.tar.xz.sig
@@ -19,12 +19,33 @@ Requires: kate-lib = %{version}-%{release}
 Requires: kate-license = %{version}-%{release}
 Requires: kate-locales = %{version}-%{release}
 Requires: kate-man = %{version}-%{release}
+BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdbusaddons-dev
+BuildRequires : kguiaddons-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
+BuildRequires : kitemmodels-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
+BuildRequires : knewstuff-dev
+BuildRequires : kpackage-dev
+BuildRequires : kparts-dev
 BuildRequires : ktexteditor-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kwallet-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : plasma-framework-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : solid-dev
+BuildRequires : sonnet-dev
 BuildRequires : threadweaver-dev
 
 %description
@@ -105,15 +126,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555602444
+export SOURCE_DATE_EPOCH=1557001744
 mkdir -p clr-build
 pushd clr-build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555602444
+export SOURCE_DATE_EPOCH=1557001744
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-GPL3
