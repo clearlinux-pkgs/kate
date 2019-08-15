@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 19.04.3
-Release  : 12
-URL      : https://download.kde.org/stable/applications/19.04.3/src/kate-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/kate-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/kate-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 13
+URL      : https://download.kde.org/stable/applications/19.08.0/src/kate-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/kate-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/kate-19.08.0.tar.xz.sig
 Summary  : Advanced Text Editor
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -98,16 +98,17 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-19.04.3
+%setup -q -n kate-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562857537
+export SOURCE_DATE_EPOCH=1565894067
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -121,7 +122,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562857537
+export SOURCE_DATE_EPOCH=1565894067
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-GPL3
@@ -155,6 +156,7 @@ popd
 %find_lang plasma_applet_org.kde.plasma.katesessions
 %find_lang tabswitcherplugin
 %find_lang ktexteditorpreviewplugin
+%find_lang lspclient
 
 %files
 %defattr(-,root,root,-)
@@ -568,6 +570,6 @@ popd
 /usr/share/man/sv/man1/kate.1
 /usr/share/man/uk/man1/kate.1
 
-%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateopenheader.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kterustcompletion.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang
+%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateopenheader.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kterustcompletion.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f lspclient.lang
 %defattr(-,root,root,-)
 
