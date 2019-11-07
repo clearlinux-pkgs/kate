@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 19.08.2
-Release  : 15
-URL      : https://download.kde.org/stable/applications/19.08.2/src/kate-19.08.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.2/src/kate-19.08.2.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.2/src/kate-19.08.2.tar.xz.sig
+Version  : 19.08.3
+Release  : 16
+URL      : https://download.kde.org/stable/applications/19.08.3/src/kate-19.08.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.3/src/kate-19.08.3.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.3/src/kate-19.08.3.tar.xz.sig
 Summary  : Advanced Text Editor
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -98,14 +98,14 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-19.08.2
+%setup -q -n kate-19.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570737346
+export SOURCE_DATE_EPOCH=1573161004
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -122,13 +122,13 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570737346
+export SOURCE_DATE_EPOCH=1573161004
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-GPL3
-cp COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/COPYING-LGPL3
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/COPYING.LIB
-cp kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/kate_COPYING.LIB
+cp %{_builddir}/kate-19.08.3/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/kate-19.08.3/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kate-19.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
+cp %{_builddir}/kate-19.08.3/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -552,10 +552,10 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kate/COPYING-GPL3
-/usr/share/package-licenses/kate/COPYING-LGPL3
-/usr/share/package-licenses/kate/COPYING.LIB
-/usr/share/package-licenses/kate/kate_COPYING.LIB
+/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
+/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
 
 %files man
 %defattr(0644,root,root,0755)
