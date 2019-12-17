@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 19.08.3
-Release  : 16
-URL      : https://download.kde.org/stable/applications/19.08.3/src/kate-19.08.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.3/src/kate-19.08.3.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.3/src/kate-19.08.3.tar.xz.sig
+Version  : 19.12.0
+Release  : 17
+URL      : https://download.kde.org/stable/release-service/19.12.0/src/kate-19.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.0/src/kate-19.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.0/src/kate-19.12.0.tar.xz.sig
 Summary  : Advanced Text Editor
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -23,8 +23,6 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
 BuildRequires : ktexteditor-dev
-BuildRequires : plasma-framework-dev
-BuildRequires : qtbase-dev mesa-dev
 BuildRequires : threadweaver-dev
 
 %description
@@ -98,14 +96,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-19.08.3
+%setup -q -n kate-19.12.0
+cd %{_builddir}/kate-19.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573161004
+export SOURCE_DATE_EPOCH=1576547265
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -122,13 +121,13 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573161004
+export SOURCE_DATE_EPOCH=1576547265
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-19.08.3/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/kate-19.08.3/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kate-19.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
-cp %{_builddir}/kate-19.08.3/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kate-19.12.0/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/kate-19.12.0/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kate-19.12.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
+cp %{_builddir}/kate-19.12.0/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -151,11 +150,11 @@ popd
 %find_lang katetextfilter
 %find_lang katexmlcheck
 %find_lang katexmltools
-%find_lang kterustcompletion
 %find_lang kwrite
 %find_lang plasma_applet_org.kde.plasma.katesessions
 %find_lang tabswitcherplugin
 %find_lang ktexteditorpreviewplugin
+%find_lang kateexternaltoolsplugin
 %find_lang lspclient
 
 %files
@@ -197,17 +196,8 @@ popd
 /usr/share/katexmltools/xhtml1-strict.dtd.xml
 /usr/share/katexmltools/xhtml1-transitional.dtd.xml
 /usr/share/katexmltools/xslt-1.0.dtd.xml
-/usr/share/kservices5/plasma-applet-org.kde.plasma.katesessions.desktop
-/usr/share/kservices5/plasma-dataengine-katesessions.desktop
 /usr/share/metainfo/org.kde.kate.appdata.xml
 /usr/share/metainfo/org.kde.kwrite.appdata.xml
-/usr/share/metainfo/org.kde.plasma.katesessions.appdata.xml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/KateSessionsItemDelegate.qml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/Menu.qml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/katesessions.qml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/metadata.desktop
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/metadata.json
-/usr/share/plasma/services/org.kde.plasma.katesessions.operations
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -249,10 +239,6 @@ popd
 /usr/share/doc/HTML/ca/kate/index.docbook
 /usr/share/doc/HTML/ca/kate/kate.png
 /usr/share/doc/HTML/ca/kate/list-add-22.png
-/usr/share/doc/HTML/ca/kate/lumen-calltips.png
-/usr/share/doc/HTML/ca/kate/lumen-completition-overload.png
-/usr/share/doc/HTML/ca/kate/lumen-completition.png
-/usr/share/doc/HTML/ca/kate/lumen-import.png
 /usr/share/doc/HTML/ca/kate/mascot_kate.png
 /usr/share/doc/HTML/ca/kate/menus.docbook
 /usr/share/doc/HTML/ca/kate/plugins.docbook
@@ -262,8 +248,6 @@ popd
 /usr/share/doc/HTML/ca/kate/project-quickopen.png
 /usr/share/doc/HTML/ca/kate/project-search.png
 /usr/share/doc/HTML/ca/kate/project-view.png
-/usr/share/doc/HTML/ca/kate/rust-completion.png
-/usr/share/doc/HTML/ca/kate/rust-configuration.png
 /usr/share/doc/HTML/ca/kate/snippets-form.png
 /usr/share/doc/HTML/ca/kate/snippets-panel.png
 /usr/share/doc/HTML/ca/kate/snippets-repository.png
@@ -352,10 +336,6 @@ popd
 /usr/share/doc/HTML/en/kate/index.docbook
 /usr/share/doc/HTML/en/kate/kate.png
 /usr/share/doc/HTML/en/kate/list-add-22.png
-/usr/share/doc/HTML/en/kate/lumen-calltips.png
-/usr/share/doc/HTML/en/kate/lumen-completition-overload.png
-/usr/share/doc/HTML/en/kate/lumen-completition.png
-/usr/share/doc/HTML/en/kate/lumen-import.png
 /usr/share/doc/HTML/en/kate/mascot_kate.png
 /usr/share/doc/HTML/en/kate/menus.docbook
 /usr/share/doc/HTML/en/kate/plugins.docbook
@@ -365,8 +345,6 @@ popd
 /usr/share/doc/HTML/en/kate/project-quickopen.png
 /usr/share/doc/HTML/en/kate/project-search.png
 /usr/share/doc/HTML/en/kate/project-view.png
-/usr/share/doc/HTML/en/kate/rust-completion.png
-/usr/share/doc/HTML/en/kate/rust-configuration.png
 /usr/share/doc/HTML/en/kate/snippets-form.png
 /usr/share/doc/HTML/en/kate/snippets-panel.png
 /usr/share/doc/HTML/en/kate/snippets-repository.png
@@ -526,6 +504,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/ktexteditor/externaltoolsplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katebacktracebrowserplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katebuildplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katecloseexceptplugin.so
@@ -543,12 +522,10 @@ popd
 /usr/lib64/qt5/plugins/ktexteditor/katesymbolviewerplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katexmlcheckplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katexmltoolsplugin.so
-/usr/lib64/qt5/plugins/ktexteditor/kterustcompletionplugin.so
-/usr/lib64/qt5/plugins/ktexteditor/ktexteditor_lumen.so
 /usr/lib64/qt5/plugins/ktexteditor/ktexteditorpreviewplugin.so
+/usr/lib64/qt5/plugins/ktexteditor/lspclientplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/tabswitcherplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/textfilterplugin.so
-/usr/lib64/qt5/plugins/plasma/dataengine/plasma_engine_katesessions.so
 
 %files license
 %defattr(0644,root,root,0755)
@@ -570,6 +547,6 @@ popd
 /usr/share/man/sv/man1/kate.1
 /usr/share/man/uk/man1/kate.1
 
-%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateopenheader.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kterustcompletion.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f lspclient.lang
+%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateopenheader.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f kateexternaltoolsplugin.lang -f lspclient.lang
 %defattr(-,root,root,-)
 
