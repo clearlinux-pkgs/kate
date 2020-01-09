@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 19.12.0
-Release  : 17
-URL      : https://download.kde.org/stable/release-service/19.12.0/src/kate-19.12.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.0/src/kate-19.12.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.0/src/kate-19.12.0.tar.xz.sig
+Version  : 19.12.1
+Release  : 18
+URL      : https://download.kde.org/stable/release-service/19.12.1/src/kate-19.12.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.1/src/kate-19.12.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.1/src/kate-19.12.1.tar.xz.sig
 Summary  : Advanced Text Editor
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -96,15 +96,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-19.12.0
-cd %{_builddir}/kate-19.12.0
+%setup -q -n kate-19.12.1
+cd %{_builddir}/kate-19.12.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576547265
+export SOURCE_DATE_EPOCH=1578603528
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -121,13 +121,13 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1576547265
+export SOURCE_DATE_EPOCH=1578603528
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-19.12.0/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/kate-19.12.0/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kate-19.12.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
-cp %{_builddir}/kate-19.12.0/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kate-19.12.1/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/kate-19.12.1/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kate-19.12.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
+cp %{_builddir}/kate-19.12.1/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
