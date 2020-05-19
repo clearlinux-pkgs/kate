@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 20.04.0
-Release  : 21
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/kate-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/kate-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/kate-20.04.0.tar.xz.sig
-Summary  : Advanced Text Editor
+Version  : 20.04.1
+Release  : 22
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/kate-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/kate-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/kate-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: kate-bin = %{version}-%{release}
@@ -21,8 +21,23 @@ Requires: kate-locales = %{version}-%{release}
 Requires: kate-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kactivities-dev
+BuildRequires : kconfig-dev
+BuildRequires : kcoreaddons-dev
+BuildRequires : kdoctools-dev
+BuildRequires : kguiaddons-dev
+BuildRequires : ki18n-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
+BuildRequires : kitemmodels-dev
+BuildRequires : kitemviews-dev
+BuildRequires : knewstuff-dev
 BuildRequires : ktexteditor-dev
+BuildRequires : kwallet-dev
+BuildRequires : plasma-framework-dev
+BuildRequires : qtbase-dev
+BuildRequires : syntax-highlighting-dev
 BuildRequires : threadweaver-dev
 
 %description
@@ -96,38 +111,37 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-20.04.0
-cd %{_builddir}/kate-20.04.0
+%setup -q -n kate-20.04.1
+cd %{_builddir}/kate-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587676103
+export SOURCE_DATE_EPOCH=1589848430
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587676103
+export SOURCE_DATE_EPOCH=1589848430
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-20.04.0/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/kate-20.04.0/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kate-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
-cp %{_builddir}/kate-20.04.0/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kate-20.04.1/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/kate-20.04.1/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kate-20.04.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
+cp %{_builddir}/kate-20.04.1/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -201,8 +215,17 @@ popd
 /usr/share/katexmltools/xhtml1-strict.dtd.xml
 /usr/share/katexmltools/xhtml1-transitional.dtd.xml
 /usr/share/katexmltools/xslt-1.0.dtd.xml
+/usr/share/kservices5/plasma-applet-org.kde.plasma.katesessions.desktop
+/usr/share/kservices5/plasma-dataengine-katesessions.desktop
 /usr/share/metainfo/org.kde.kate.appdata.xml
 /usr/share/metainfo/org.kde.kwrite.appdata.xml
+/usr/share/metainfo/org.kde.plasma.katesessions.appdata.xml
+/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/KateSessionsItemDelegate.qml
+/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/Menu.qml
+/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/katesessions.qml
+/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/metadata.desktop
+/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/metadata.json
+/usr/share/plasma/services/org.kde.plasma.katesessions.operations
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -528,8 +551,10 @@ popd
 /usr/lib64/qt5/plugins/ktexteditor/katexmlcheckplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katexmltoolsplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/ktexteditorpreviewplugin.so
+/usr/lib64/qt5/plugins/ktexteditor/lspclientplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/tabswitcherplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/textfilterplugin.so
+/usr/lib64/qt5/plugins/plasma/dataengine/plasma_engine_katesessions.so
 
 %files license
 %defattr(0644,root,root,0755)
