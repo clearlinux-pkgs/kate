@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 20.04.2
-Release  : 23
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/kate-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/kate-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/kate-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 24
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/kate-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/kate-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/kate-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -111,15 +111,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-20.04.2
-cd %{_builddir}/kate-20.04.2
+%setup -q -n kate-20.08.0
+cd %{_builddir}/kate-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591905786
+export SOURCE_DATE_EPOCH=1597776279
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -131,17 +131,17 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591905786
+export SOURCE_DATE_EPOCH=1597776279
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-20.04.2/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/kate-20.04.2/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kate-20.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
-cp %{_builddir}/kate-20.04.2/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kate-20.08.0/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/kate-20.08.0/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kate-20.08.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
+cp %{_builddir}/kate-20.08.0/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -229,45 +229,20 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
-/usr/share/doc/HTML/ca/kate/arrow-down-double-22.png
-/usr/share/doc/HTML/ca/kate/arrow-up-double-22.png
 /usr/share/doc/HTML/ca/kate/backtrace-settings.png
-/usr/share/doc/HTML/ca/kate/bookmarks-22.png
 /usr/share/doc/HTML/ca/kate/build-output.png
 /usr/share/doc/HTML/ca/kate/close-except-like.png
 /usr/share/doc/HTML/ca/kate/configdialog01.png
-/usr/share/doc/HTML/ca/kate/configure-22.png
-/usr/share/doc/HTML/ca/kate/configure-shortcuts-22.png
 /usr/share/doc/HTML/ca/kate/configuring.docbook
 /usr/share/doc/HTML/ca/kate/ctags-global-setting.png
-/usr/share/doc/HTML/ca/kate/ctags-session-setting.png
 /usr/share/doc/HTML/ca/kate/development.docbook
-/usr/share/doc/HTML/ca/kate/dialog-ok-22.png
-/usr/share/doc/HTML/ca/kate/document-new-22.png
-/usr/share/doc/HTML/ca/kate/document-open-22.png
-/usr/share/doc/HTML/ca/kate/document-save-22.png
-/usr/share/doc/HTML/ca/kate/document-save-as-22.png
-/usr/share/doc/HTML/ca/kate/documentswitcher.png
-/usr/share/doc/HTML/ca/kate/edit-copy-22.png
-/usr/share/doc/HTML/ca/kate/edit-delete-22.png
-/usr/share/doc/HTML/ca/kate/edit-select-all-22.png
-/usr/share/doc/HTML/ca/kate/format-text-superscript-22.png
 /usr/share/doc/HTML/ca/kate/fundamentals.docbook
-/usr/share/doc/HTML/ca/kate/games-config-options-22.png
-/usr/share/doc/HTML/ca/kate/gdb-call-stack.png
 /usr/share/doc/HTML/ca/kate/gdb-io.png
-/usr/share/doc/HTML/ca/kate/gdb-locals.png
 /usr/share/doc/HTML/ca/kate/gdb-output.png
 /usr/share/doc/HTML/ca/kate/gdb-settings.png
-/usr/share/doc/HTML/ca/kate/go-down-22.png
-/usr/share/doc/HTML/ca/kate/go-next-22.png
-/usr/share/doc/HTML/ca/kate/go-previous-22.png
-/usr/share/doc/HTML/ca/kate/go-up-22.png
 /usr/share/doc/HTML/ca/kate/index.cache.bz2
 /usr/share/doc/HTML/ca/kate/index.docbook
 /usr/share/doc/HTML/ca/kate/kate.png
-/usr/share/doc/HTML/ca/kate/list-add-22.png
-/usr/share/doc/HTML/ca/kate/mascot_kate.png
 /usr/share/doc/HTML/ca/kate/menus.docbook
 /usr/share/doc/HTML/ca/kate/plugins.docbook
 /usr/share/doc/HTML/ca/kate/project-completition.png
@@ -281,25 +256,13 @@ popd
 /usr/share/doc/HTML/ca/kate/snippets-repository.png
 /usr/share/doc/HTML/ca/kate/snippets-usage.png
 /usr/share/doc/HTML/ca/kate/symbolviewer-settings.png
-/usr/share/doc/HTML/ca/kate/system-switch-user-22.png
-/usr/share/doc/HTML/ca/kate/tab-duplicate-22.png
-/usr/share/doc/HTML/ca/kate/tab-new-22.png
 /usr/share/doc/HTML/ca/kate/textfilter.png
-/usr/share/doc/HTML/ca/kate/view-refresh-22.png
-/usr/share/doc/HTML/ca/kate/view-split-left-right-22.png
 /usr/share/doc/HTML/ca/katepart/advanced.docbook
-/usr/share/doc/HTML/ca/katepart/arrow-down-double-22.png
-/usr/share/doc/HTML/ca/katepart/arrow-up-double-22.png
-/usr/share/doc/HTML/ca/katepart/comma-to.png
-/usr/share/doc/HTML/ca/katepart/configure-shortcuts-22.png
 /usr/share/doc/HTML/ca/katepart/configuring.docbook
 /usr/share/doc/HTML/ca/katepart/development.docbook
-/usr/share/doc/HTML/ca/katepart/edit-select-all-22.png
-/usr/share/doc/HTML/ca/katepart/format-text-superscript-22.png
 /usr/share/doc/HTML/ca/katepart/fundamentals.docbook
 /usr/share/doc/HTML/ca/katepart/index.cache.bz2
 /usr/share/doc/HTML/ca/katepart/index.docbook
-/usr/share/doc/HTML/ca/katepart/line-modification-system.png
 /usr/share/doc/HTML/ca/katepart/menus.docbook
 /usr/share/doc/HTML/ca/katepart/minimap.png
 /usr/share/doc/HTML/ca/katepart/part.docbook
@@ -427,6 +390,8 @@ popd
 /usr/share/doc/HTML/it/katepart/vi.docbook
 /usr/share/doc/HTML/it/kwrite/index.cache.bz2
 /usr/share/doc/HTML/it/kwrite/index.docbook
+/usr/share/doc/HTML/ko/kwrite/index.cache.bz2
+/usr/share/doc/HTML/ko/kwrite/index.docbook
 /usr/share/doc/HTML/nl/kate/configuring.docbook
 /usr/share/doc/HTML/nl/kate/development.docbook
 /usr/share/doc/HTML/nl/kate/fundamentals.docbook
@@ -515,7 +480,6 @@ popd
 /usr/share/doc/HTML/uk/kate/project-quickopen.png
 /usr/share/doc/HTML/uk/kate/project-search.png
 /usr/share/doc/HTML/uk/kate/project-view.png
-/usr/share/doc/HTML/uk/kate/rust-configuration.png
 /usr/share/doc/HTML/uk/kate/textfilter.png
 /usr/share/doc/HTML/uk/katepart/advanced.docbook
 /usr/share/doc/HTML/uk/katepart/configuring.docbook
