@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 20.08.0
-Release  : 24
-URL      : https://download.kde.org/stable/release-service/20.08.0/src/kate-20.08.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.08.0/src/kate-20.08.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.08.0/src/kate-20.08.0.tar.xz.sig
+Version  : 20.08.2
+Release  : 25
+URL      : https://download.kde.org/stable/release-service/20.08.2/src/kate-20.08.2.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.2/src/kate-20.08.2.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.2/src/kate-20.08.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -111,15 +111,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-20.08.0
-cd %{_builddir}/kate-20.08.0
+%setup -q -n kate-20.08.2
+cd %{_builddir}/kate-20.08.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1597776279
+export SOURCE_DATE_EPOCH=1602635083
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -135,13 +135,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1597776279
+export SOURCE_DATE_EPOCH=1602635083
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-20.08.0/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/kate-20.08.0/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kate-20.08.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
-cp %{_builddir}/kate-20.08.0/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kate-20.08.2/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/kate-20.08.2/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kate-20.08.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
+cp %{_builddir}/kate-20.08.2/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
