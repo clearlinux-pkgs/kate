@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kate
-Version  : 20.08.3
-Release  : 26
-URL      : https://download.kde.org/stable/release-service/20.08.3/src/kate-20.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.08.3/src/kate-20.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.08.3/src/kate-20.08.3.tar.xz.sig
+Version  : 20.12.0
+Release  : 27
+URL      : https://download.kde.org/stable/release-service/20.12.0/src/kate-20.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.12.0/src/kate-20.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.12.0/src/kate-20.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
+License  : GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
 Requires: kate-bin = %{version}-%{release}
 Requires: kate-data = %{version}-%{release}
 Requires: kate-lib = %{version}-%{release}
@@ -111,15 +111,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-20.08.3
-cd %{_builddir}/kate-20.08.3
+%setup -q -n kate-20.12.0
+cd %{_builddir}/kate-20.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604595659
+export SOURCE_DATE_EPOCH=1607708042
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -135,13 +135,18 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1604595659
+export SOURCE_DATE_EPOCH=1607708042
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-20.08.3/COPYING-GPL3 %{buildroot}/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/kate-20.08.3/COPYING-LGPL3 %{buildroot}/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kate-20.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
-cp %{_builddir}/kate-20.08.3/kate/COPYING.LIB %{buildroot}/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kate-20.12.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kate-20.12.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kate-20.12.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kate-20.12.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kate-20.12.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kate/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/kate-20.12.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kate-20.12.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kate-20.12.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kate-20.12.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kate/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
 pushd clr-build
 %make_install
 popd
@@ -522,10 +527,13 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kate/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-/usr/share/package-licenses/kate/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-/usr/share/package-licenses/kate/e2b9735e3fe7740e377cd085eee521c819a4e736
-/usr/share/package-licenses/kate/f45ee1c765646813b442ca58de72e20a64a7ddba
+/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
+/usr/share/package-licenses/kate/3c3d7573e137d48253731c975ecf90d74cfa9efe
+/usr/share/package-licenses/kate/6091db0aead0d90182b93d3c0d09ba93d188f907
+/usr/share/package-licenses/kate/757b86330df80f81143d5916b3e92b4bcb1b1890
+/usr/share/package-licenses/kate/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
+/usr/share/package-licenses/kate/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
 %files man
 %defattr(0644,root,root,0755)
