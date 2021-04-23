@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kate
-Version  : 20.12.3
-Release  : 29
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/kate-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/kate-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/kate-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 30
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/kate-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/kate-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/kate-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -38,7 +38,6 @@ BuildRequires : kwallet-dev
 BuildRequires : plasma-framework-dev
 BuildRequires : qtbase-dev
 BuildRequires : syntax-highlighting-dev
-BuildRequires : threadweaver-dev
 
 %description
 Kate XML plugin 0.9, 2002-07-20, Daniel Naber <daniel.naber@t-online.de>
@@ -111,15 +110,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-20.12.3
-cd %{_builddir}/kate-20.12.3
+%setup -q -n kate-21.04.0
+cd %{_builddir}/kate-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618660451
+export SOURCE_DATE_EPOCH=1619206310
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -135,18 +134,18 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618660451
+export SOURCE_DATE_EPOCH=1619206310
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-20.12.3/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kate-20.12.3/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kate-20.12.3/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kate-20.12.3/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kate-20.12.3/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kate/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/kate-20.12.3/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/kate-20.12.3/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kate-20.12.3/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kate-20.12.3/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kate/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/kate-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kate-21.04.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kate-21.04.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kate-21.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kate-21.04.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kate/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/kate-21.04.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kate-21.04.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kate-21.04.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kate-21.04.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kate/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
 pushd clr-build
 %make_install
 popd
@@ -173,7 +172,9 @@ popd
 %find_lang plasma_applet_org.kde.plasma.katesessions
 %find_lang tabswitcherplugin
 %find_lang ktexteditorpreviewplugin
+%find_lang katecolorpickerplugin
 %find_lang kateexternaltoolsplugin
+%find_lang kategitblameplugin
 %find_lang lspclient
 
 %files
@@ -331,6 +332,10 @@ popd
 /usr/share/doc/HTML/en/kate/index.cache.bz2
 /usr/share/doc/HTML/en/kate/index.docbook
 /usr/share/doc/HTML/en/kate/kate.png
+/usr/share/doc/HTML/en/kate/kateeditexternaltool.png
+/usr/share/doc/HTML/en/kate/kateexternaltools.png
+/usr/share/doc/HTML/en/kate/kateexternaltoolvariablechooser.png
+/usr/share/doc/HTML/en/kate/katevariableexpansion.png
 /usr/share/doc/HTML/en/kate/list-add-22.png
 /usr/share/doc/HTML/en/kate/mascot_kate.png
 /usr/share/doc/HTML/en/kate/menus.docbook
@@ -355,16 +360,37 @@ popd
 /usr/share/doc/HTML/en/katepart/advanced.docbook
 /usr/share/doc/HTML/en/katepart/arrow-down-double-22.png
 /usr/share/doc/HTML/en/katepart/arrow-up-double-22.png
+/usr/share/doc/HTML/en/katepart/breeze-color-theme-preview.png
+/usr/share/doc/HTML/en/katepart/color-themes-gui-breeze-dark-default-text-styles.png
+/usr/share/doc/HTML/en/katepart/color-themes-gui-default-text-styles.png
 /usr/share/doc/HTML/en/katepart/comma-to.png
 /usr/share/doc/HTML/en/katepart/configure-shortcuts-22.png
 /usr/share/doc/HTML/en/katepart/configuring.docbook
 /usr/share/doc/HTML/en/katepart/development.docbook
 /usr/share/doc/HTML/en/katepart/edit-select-all-22.png
+/usr/share/doc/HTML/en/katepart/editor-colors-BackgroundColor.png
+/usr/share/doc/HTML/en/katepart/editor-colors-BracketMatching.png
+/usr/share/doc/HTML/en/katepart/editor-colors-CodeFolding.png
+/usr/share/doc/HTML/en/katepart/editor-colors-CurrentLine.png
+/usr/share/doc/HTML/en/katepart/editor-colors-IconBorder.png
+/usr/share/doc/HTML/en/katepart/editor-colors-IndentationLine.png
+/usr/share/doc/HTML/en/katepart/editor-colors-MarkBookmark.png
+/usr/share/doc/HTML/en/katepart/editor-colors-ModifiedLines.png
+/usr/share/doc/HTML/en/katepart/editor-colors-ReplaceHighlight.png
+/usr/share/doc/HTML/en/katepart/editor-colors-SearchHighlight.png
+/usr/share/doc/HTML/en/katepart/editor-colors-SpellChecking.png
+/usr/share/doc/HTML/en/katepart/editor-colors-TabMarker.png
+/usr/share/doc/HTML/en/katepart/editor-colors-Template.png
+/usr/share/doc/HTML/en/katepart/editor-colors-TemplateAndSnippets.png
+/usr/share/doc/HTML/en/katepart/editor-colors-TemplateReadOnlyPlaceholder.png
+/usr/share/doc/HTML/en/katepart/editor-colors-TextSelection.png
+/usr/share/doc/HTML/en/katepart/editor-colors-WordWrapMarker.png
 /usr/share/doc/HTML/en/katepart/format-text-superscript-22.png
 /usr/share/doc/HTML/en/katepart/fundamentals.docbook
 /usr/share/doc/HTML/en/katepart/highlighted.png
 /usr/share/doc/HTML/en/katepart/index.cache.bz2
 /usr/share/doc/HTML/en/katepart/index.docbook
+/usr/share/doc/HTML/en/katepart/kf5-ksyntaxhighlighting.png
 /usr/share/doc/HTML/en/katepart/line-modification-system.png
 /usr/share/doc/HTML/en/katepart/menus.docbook
 /usr/share/doc/HTML/en/katepart/minimap.png
@@ -442,23 +468,6 @@ popd
 /usr/share/doc/HTML/pt_BR/katepart/vi.docbook
 /usr/share/doc/HTML/pt_BR/kwrite/index.cache.bz2
 /usr/share/doc/HTML/pt_BR/kwrite/index.docbook
-/usr/share/doc/HTML/ru/kate/configuring.docbook
-/usr/share/doc/HTML/ru/kate/development.docbook
-/usr/share/doc/HTML/ru/kate/fundamentals.docbook
-/usr/share/doc/HTML/ru/kate/index.cache.bz2
-/usr/share/doc/HTML/ru/kate/index.docbook
-/usr/share/doc/HTML/ru/kate/menus.docbook
-/usr/share/doc/HTML/ru/kate/plugins.docbook
-/usr/share/doc/HTML/ru/katepart/advanced.docbook
-/usr/share/doc/HTML/ru/katepart/configuring.docbook
-/usr/share/doc/HTML/ru/katepart/development.docbook
-/usr/share/doc/HTML/ru/katepart/fundamentals.docbook
-/usr/share/doc/HTML/ru/katepart/index.cache.bz2
-/usr/share/doc/HTML/ru/katepart/index.docbook
-/usr/share/doc/HTML/ru/katepart/menus.docbook
-/usr/share/doc/HTML/ru/katepart/part.docbook
-/usr/share/doc/HTML/ru/katepart/regular-expressions.docbook
-/usr/share/doc/HTML/ru/katepart/vi.docbook
 /usr/share/doc/HTML/ru/kwrite/index.cache.bz2
 /usr/share/doc/HTML/ru/kwrite/index.docbook
 /usr/share/doc/HTML/sv/kate/configuring.docbook
@@ -506,10 +515,24 @@ popd
 /usr/share/doc/HTML/uk/katepart/advanced.docbook
 /usr/share/doc/HTML/uk/katepart/configuring.docbook
 /usr/share/doc/HTML/uk/katepart/development.docbook
+/usr/share/doc/HTML/uk/katepart/editor-colors-BackgroundColor.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-BracketMatching.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-CurrentLine.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-IconBorder.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-MarkBookmark.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-SearchHighlight.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-SpellChecking.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-TabMarker.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-Template.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-TemplateAndSnippets.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-TemplateReadOnlyPlaceholder.png
+/usr/share/doc/HTML/uk/katepart/editor-colors-TextSelection.png
 /usr/share/doc/HTML/uk/katepart/fundamentals.docbook
 /usr/share/doc/HTML/uk/katepart/index.cache.bz2
 /usr/share/doc/HTML/uk/katepart/index.docbook
+/usr/share/doc/HTML/uk/katepart/kf5-ksyntaxhighlighting.png
 /usr/share/doc/HTML/uk/katepart/menus.docbook
+/usr/share/doc/HTML/uk/katepart/minimap.png
 /usr/share/doc/HTML/uk/katepart/part.docbook
 /usr/share/doc/HTML/uk/katepart/regular-expressions.docbook
 /usr/share/doc/HTML/uk/katepart/vi.docbook
@@ -522,10 +545,12 @@ popd
 /usr/lib64/qt5/plugins/ktexteditor/katebacktracebrowserplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katebuildplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katecloseexceptplugin.so
+/usr/lib64/qt5/plugins/ktexteditor/katecolorpickerplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katectagsplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katefilebrowserplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katefiletreeplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/kategdbplugin.so
+/usr/lib64/qt5/plugins/ktexteditor/kategitblameplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katekonsoleplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/kateopenheaderplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/kateprojectplugin.so
@@ -562,10 +587,9 @@ popd
 /usr/share/man/nl/man1/kate.1
 /usr/share/man/pt/man1/kate.1
 /usr/share/man/pt_BR/man1/kate.1
-/usr/share/man/ru/man1/kate.1
 /usr/share/man/sv/man1/kate.1
 /usr/share/man/uk/man1/kate.1
 
-%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateopenheader.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f kateexternaltoolsplugin.lang -f lspclient.lang
+%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateopenheader.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f katecolorpickerplugin.lang -f kateexternaltoolsplugin.lang -f kategitblameplugin.lang -f lspclient.lang
 %defattr(-,root,root,-)
 
