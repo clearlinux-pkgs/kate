@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kate
-Version  : 21.04.2
-Release  : 31
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/kate-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/kate-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/kate-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 32
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/kate-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/kate-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/kate-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -110,42 +110,42 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-21.04.2
-cd %{_builddir}/kate-21.04.2
+%setup -q -n kate-21.08.1
+cd %{_builddir}/kate-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623366459
+export SOURCE_DATE_EPOCH=1630964241
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623366459
+export SOURCE_DATE_EPOCH=1630964241
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
-cp %{_builddir}/kate-21.04.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kate-21.04.2/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kate-21.04.2/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kate-21.04.2/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kate-21.04.2/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kate/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/kate-21.04.2/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/kate-21.04.2/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kate-21.04.2/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kate-21.04.2/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kate/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/kate-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kate-21.08.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kate-21.08.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kate-21.08.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kate-21.08.1/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kate/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/kate-21.08.1/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kate/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kate-21.08.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kate-21.08.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kate/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kate-21.08.1/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kate/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
 pushd clr-build
 %make_install
 popd
@@ -159,7 +159,6 @@ popd
 %find_lang katefiletree
 %find_lang kategdbplugin
 %find_lang katekonsoleplugin
-%find_lang kateopenheader
 %find_lang kateproject
 %find_lang katesearch
 %find_lang katesnippetsplugin
@@ -221,7 +220,6 @@ popd
 /usr/share/katexmltools/xhtml1-strict.dtd.xml
 /usr/share/katexmltools/xhtml1-transitional.dtd.xml
 /usr/share/katexmltools/xslt-1.0.dtd.xml
-/usr/share/kservices5/plasma-applet-org.kde.plasma.katesessions.desktop
 /usr/share/kservices5/plasma-dataengine-katesessions.desktop
 /usr/share/metainfo/org.kde.kate.appdata.xml
 /usr/share/metainfo/org.kde.kwrite.appdata.xml
@@ -552,7 +550,6 @@ popd
 /usr/lib64/qt5/plugins/ktexteditor/kategdbplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/kategitblameplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katekonsoleplugin.so
-/usr/lib64/qt5/plugins/ktexteditor/kateopenheaderplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/kateprojectplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katereplicodeplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katesearchplugin.so
@@ -590,6 +587,6 @@ popd
 /usr/share/man/sv/man1/kate.1
 /usr/share/man/uk/man1/kate.1
 
-%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateopenheader.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f katecolorpickerplugin.lang -f kateexternaltoolsplugin.lang -f kategitblameplugin.lang -f lspclient.lang
+%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f kwrite.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f katecolorpickerplugin.lang -f kateexternaltoolsplugin.lang -f kategitblameplugin.lang -f lspclient.lang
 %defattr(-,root,root,-)
 
