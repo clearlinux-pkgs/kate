@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kate
-Version  : 22.08.3
-Release  : 47
-URL      : https://download.kde.org/stable/release-service/22.08.3/src/kate-22.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.3/src/kate-22.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.3/src/kate-22.08.3.tar.xz.sig
+Version  : 22.12.0
+Release  : 48
+URL      : https://download.kde.org/stable/release-service/22.12.0/src/kate-22.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.12.0/src/kate-22.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.12.0/src/kate-22.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 LGPL-2.0 MIT
@@ -35,8 +35,12 @@ BuildRequires : kio-dev
 BuildRequires : kitemviews-dev
 BuildRequires : knewstuff-dev
 BuildRequires : ktexteditor-dev
+BuildRequires : kuserfeedback-dev
 BuildRequires : kwallet-dev
-BuildRequires : plasma-framework-dev
+BuildRequires : pkg-config
+BuildRequires : pkgconfig(pyside2)
+BuildRequires : pkgconfig(shiboken2)
+BuildRequires : python3-dev
 BuildRequires : syntax-highlighting-dev
 
 %description
@@ -110,15 +114,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-22.08.3
-cd %{_builddir}/kate-22.08.3
+%setup -q -n kate-22.12.0
+cd %{_builddir}/kate-22.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667877927
+export SOURCE_DATE_EPOCH=1670533921
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -134,7 +138,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1667877927
+export SOURCE_DATE_EPOCH=1670533921
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp %{_builddir}/kate-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kate/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -145,12 +149,15 @@ cp %{_builddir}/kate-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-
 pushd clr-build
 %make_install
 popd
+%find_lang kate
+%find_lang katetextfilter
+%find_lang katexmltools
 %find_lang kate-ctags-plugin
 %find_lang kate-replicode-plugin
-%find_lang kate
 %find_lang katebacktracebrowserplugin
 %find_lang katebuild-plugin
 %find_lang katecloseexceptplugin
+%find_lang katecolorpickerplugin
 %find_lang katefilebrowserplugin
 %find_lang katefiletree
 %find_lang kategdbplugin
@@ -160,16 +167,13 @@ popd
 %find_lang katesnippetsplugin
 %find_lang katesql
 %find_lang katesymbolviewer
-%find_lang katetextfilter
 %find_lang katexmlcheck
-%find_lang katexmltools
-%find_lang plasma_applet_org.kde.plasma.katesessions
-%find_lang tabswitcherplugin
 %find_lang ktexteditorpreviewplugin
-%find_lang katecolorpickerplugin
+%find_lang tabswitcherplugin
 %find_lang kateexternaltoolsplugin
 %find_lang kategitblameplugin
 %find_lang lspclient
+%find_lang katekeyboardmacros
 
 %files
 %defattr(-,root,root,-)
@@ -220,17 +224,10 @@ popd
 /usr/share/katexmltools/xhtml1-strict.dtd.xml
 /usr/share/katexmltools/xhtml1-transitional.dtd.xml
 /usr/share/katexmltools/xslt-1.0.dtd.xml
-/usr/share/kservices5/plasma-applet-org.kde.plasma.katesessions.desktop
-/usr/share/kservices5/plasma-dataengine-katesessions.desktop
+/usr/share/kconf_update/katesession_migration.upd
+/usr/share/kconf_update/migrate_kate_sessions_applet_to_kdeplasma-addons.sh
 /usr/share/metainfo/org.kde.kate.appdata.xml
 /usr/share/metainfo/org.kde.kwrite.appdata.xml
-/usr/share/metainfo/org.kde.plasma.katesessions.appdata.xml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/KateSessionsItemDelegate.qml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/Menu.qml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/contents/ui/katesessions.qml
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/metadata.desktop
-/usr/share/plasma/plasmoids/org.kde.plasma.katesessions/metadata.json
-/usr/share/plasma/services/org.kde.plasma.katesessions.operations
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -557,7 +554,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libkateprivate.so.22.08.3
+/usr/lib64/libkateprivate.so.22.12.0
 /usr/lib64/qt5/plugins/ktexteditor/cmaketoolsplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/compilerexplorer.so
 /usr/lib64/qt5/plugins/ktexteditor/externaltoolsplugin.so
@@ -579,13 +576,13 @@ popd
 /usr/lib64/qt5/plugins/ktexteditor/katesymbolviewerplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katexmlcheckplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/katexmltoolsplugin.so
+/usr/lib64/qt5/plugins/ktexteditor/keyboardmacrosplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/ktexteditorpreviewplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/latexcompletionplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/lspclientplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/rainbowparens.so
 /usr/lib64/qt5/plugins/ktexteditor/tabswitcherplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/textfilterplugin.so
-/usr/lib64/qt5/plugins/plasma/dataengine/plasma_engine_katesessions.so
 
 %files license
 %defattr(0644,root,root,0755)
@@ -608,6 +605,6 @@ popd
 /usr/share/man/sv/man1/kate.1
 /usr/share/man/uk/man1/kate.1
 
-%files locales -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f kate.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katetextfilter.lang -f katexmlcheck.lang -f katexmltools.lang -f plasma_applet_org.kde.plasma.katesessions.lang -f tabswitcherplugin.lang -f ktexteditorpreviewplugin.lang -f katecolorpickerplugin.lang -f kateexternaltoolsplugin.lang -f kategitblameplugin.lang -f lspclient.lang
+%files locales -f kate.lang -f katetextfilter.lang -f katexmltools.lang -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katecolorpickerplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katexmlcheck.lang -f ktexteditorpreviewplugin.lang -f tabswitcherplugin.lang -f kateexternaltoolsplugin.lang -f kategitblameplugin.lang -f lspclient.lang -f katekeyboardmacros.lang
 %defattr(-,root,root,-)
 
