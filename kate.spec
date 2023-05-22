@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kate
-Version  : 23.04.0
-Release  : 53
-URL      : https://download.kde.org/stable/release-service/23.04.0/src/kate-23.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.0/src/kate-23.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.0/src/kate-23.04.0.tar.xz.sig
+Version  : 23.04.1
+Release  : 54
+URL      : https://download.kde.org/stable/release-service/23.04.1/src/kate-23.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.1/src/kate-23.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.1/src/kate-23.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 LGPL-2.0 MIT
@@ -110,31 +110,48 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-23.04.0
-cd %{_builddir}/kate-23.04.0
+%setup -q -n kate-23.04.1
+cd %{_builddir}/kate-23.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682031568
+export SOURCE_DATE_EPOCH=1684799064
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682031568
+export SOURCE_DATE_EPOCH=1684799064
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp %{_builddir}/kate-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kate/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -142,6 +159,9 @@ cp %{_builddir}/kate-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/s
 cp %{_builddir}/kate-%{version}/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a || :
 cp %{_builddir}/kate-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kate/20079e8f79713dce80ab09774505773c926afa2a || :
 cp %{_builddir}/kate-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kate/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -170,12 +190,15 @@ popd
 %find_lang kategitblameplugin
 %find_lang lspclient
 %find_lang katekeyboardmacros
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/kate
+/V3/usr/bin/kwrite
 /usr/bin/kate
 /usr/bin/kwrite
 
@@ -550,7 +573,38 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libkateprivate.so.23.04.0
+/V3/usr/lib64/libkateprivate.so.23.04.1
+/V3/usr/lib64/qt5/plugins/ktexteditor/cmaketoolsplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/compilerexplorer.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/eslintplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/externaltoolsplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/formatplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katebacktracebrowserplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katebuildplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katecloseexceptplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katecolorpickerplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katectagsplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katefilebrowserplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katefiletreeplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/kategdbplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/kategitblameplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katekonsoleplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/kateprojectplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katereplicodeplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katesearchplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katesnippetsplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katesqlplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katesymbolviewerplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katexmlcheckplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/katexmltoolsplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/keyboardmacrosplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/ktexteditorpreviewplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/latexcompletionplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/lspclientplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/rainbowparens.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/tabswitcherplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/textfilterplugin.so
+/usr/lib64/libkateprivate.so.23.04.1
 /usr/lib64/qt5/plugins/ktexteditor/cmaketoolsplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/compilerexplorer.so
 /usr/lib64/qt5/plugins/ktexteditor/eslintplugin.so
