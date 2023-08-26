@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kate
-Version  : 23.04.3
-Release  : 57
-URL      : https://download.kde.org/stable/release-service/23.04.3/src/kate-23.04.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.3/src/kate-23.04.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.3/src/kate-23.04.3.tar.xz.sig
+Version  : 23.08.0
+Release  : 58
+URL      : https://download.kde.org/stable/release-service/23.08.0/src/kate-23.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.0/src/kate-23.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.0/src/kate-23.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 LGPL-2.0 MIT
@@ -110,15 +110,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-23.04.3
-cd %{_builddir}/kate-23.04.3
+%setup -q -n kate-23.08.0
+cd %{_builddir}/kate-23.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688857558
+export SOURCE_DATE_EPOCH=1693020688
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -151,7 +151,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1688857558
+export SOURCE_DATE_EPOCH=1693020688
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp %{_builddir}/kate-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kate/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -188,8 +188,8 @@ popd
 %find_lang tabswitcherplugin
 %find_lang kateexternaltoolsplugin
 %find_lang kategitblameplugin
-%find_lang lspclient
 %find_lang katekeyboardmacros
+%find_lang lspclient
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
@@ -573,7 +573,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libkateprivate.so.23.04.3
+/V3/usr/lib64/libkateprivate.so.23.08.0
 /V3/usr/lib64/qt5/plugins/ktexteditor/cmaketoolsplugin.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/compilerexplorer.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/eslintplugin.so
@@ -601,10 +601,11 @@ popd
 /V3/usr/lib64/qt5/plugins/ktexteditor/ktexteditorpreviewplugin.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/latexcompletionplugin.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/lspclientplugin.so
+/V3/usr/lib64/qt5/plugins/ktexteditor/openlinkplugin.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/rainbowparens.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/tabswitcherplugin.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/textfilterplugin.so
-/usr/lib64/libkateprivate.so.23.04.3
+/usr/lib64/libkateprivate.so.23.08.0
 /usr/lib64/qt5/plugins/ktexteditor/cmaketoolsplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/compilerexplorer.so
 /usr/lib64/qt5/plugins/ktexteditor/eslintplugin.so
@@ -632,6 +633,7 @@ popd
 /usr/lib64/qt5/plugins/ktexteditor/ktexteditorpreviewplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/latexcompletionplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/lspclientplugin.so
+/usr/lib64/qt5/plugins/ktexteditor/openlinkplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/rainbowparens.so
 /usr/lib64/qt5/plugins/ktexteditor/tabswitcherplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/textfilterplugin.so
@@ -657,6 +659,6 @@ popd
 /usr/share/man/sv/man1/kate.1
 /usr/share/man/uk/man1/kate.1
 
-%files locales -f kate.lang -f katetextfilter.lang -f katexmltools.lang -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katecolorpickerplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katexmlcheck.lang -f ktexteditorpreviewplugin.lang -f tabswitcherplugin.lang -f kateexternaltoolsplugin.lang -f kategitblameplugin.lang -f lspclient.lang -f katekeyboardmacros.lang
+%files locales -f kate.lang -f katetextfilter.lang -f katexmltools.lang -f kate-ctags-plugin.lang -f kate-replicode-plugin.lang -f katebacktracebrowserplugin.lang -f katebuild-plugin.lang -f katecloseexceptplugin.lang -f katecolorpickerplugin.lang -f katefilebrowserplugin.lang -f katefiletree.lang -f kategdbplugin.lang -f katekonsoleplugin.lang -f kateproject.lang -f katesearch.lang -f katesnippetsplugin.lang -f katesql.lang -f katesymbolviewer.lang -f katexmlcheck.lang -f ktexteditorpreviewplugin.lang -f tabswitcherplugin.lang -f kateexternaltoolsplugin.lang -f kategitblameplugin.lang -f katekeyboardmacros.lang -f lspclient.lang
 %defattr(-,root,root,-)
 
