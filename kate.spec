@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kate
-Version  : 23.08.3
-Release  : 63
-URL      : https://download.kde.org/stable/release-service/23.08.3/src/kate-23.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.08.3/src/kate-23.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.08.3/src/kate-23.08.3.tar.xz.sig
+Version  : 23.08.4
+Release  : 64
+URL      : https://download.kde.org/stable/release-service/23.08.4/src/kate-23.08.4.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.4/src/kate-23.08.4.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.4/src/kate-23.08.4.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 LGPL-2.0 MIT
@@ -110,15 +110,15 @@ man components for the kate package.
 
 
 %prep
-%setup -q -n kate-23.08.3
-cd %{_builddir}/kate-23.08.3
+%setup -q -n kate-23.08.4
+cd %{_builddir}/kate-23.08.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701976427
+export SOURCE_DATE_EPOCH=1702966141
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -177,7 +177,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1701976427
+export SOURCE_DATE_EPOCH=1702966141
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kate
 cp %{_builddir}/kate-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kate/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -599,7 +599,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libkateprivate.so.23.08.3
+/V3/usr/lib64/libkateprivate.so.23.08.4
 /V3/usr/lib64/qt5/plugins/ktexteditor/cmaketoolsplugin.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/compilerexplorer.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/eslintplugin.so
@@ -631,7 +631,7 @@ popd
 /V3/usr/lib64/qt5/plugins/ktexteditor/rainbowparens.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/tabswitcherplugin.so
 /V3/usr/lib64/qt5/plugins/ktexteditor/textfilterplugin.so
-/usr/lib64/libkateprivate.so.23.08.3
+/usr/lib64/libkateprivate.so.23.08.4
 /usr/lib64/qt5/plugins/ktexteditor/cmaketoolsplugin.so
 /usr/lib64/qt5/plugins/ktexteditor/compilerexplorer.so
 /usr/lib64/qt5/plugins/ktexteditor/eslintplugin.so
