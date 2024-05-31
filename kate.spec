@@ -9,7 +9,7 @@
 #
 Name     : kate
 Version  : 24.05.0
-Release  : 69
+Release  : 70
 URL      : https://download.kde.org/stable/release-service/24.05.0/src/kate-24.05.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.05.0/src/kate-24.05.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.05.0/src/kate-24.05.0.tar.xz.sig
