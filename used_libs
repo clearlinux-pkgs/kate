@@ -22,7 +22,6 @@ libKF6Parts.so.6
 libKF6Service.so.6
 libKF6SyntaxHighlighting.so.6
 libKF6TextEditor.so.6
-libKF6TextWidgets.so.6
 libKF6WidgetsAddons.so.6
 libKF6WindowSystem.so.6
 libKF6XmlGui.so.6
@@ -35,4 +34,5 @@ libQt6Qml.so.6
 libQt6Widgets.so.6
 libQt6Xml.so.6
 libc.so.6
+libm.so.6
 libstdc++.so.6
